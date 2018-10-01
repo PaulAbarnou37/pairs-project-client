@@ -1,0 +1,37 @@
+.App {
+  text-align: center;
+  font-family: 'Bai Jamjuree', sans-serif;
+
+}
+
+.search-element {
+  border: 2px solid black;
+  width: 50%;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin: 0 40px;
+}
+
+nav ul div {
+  display: flex;
+}
+
+.each-link { 
+  padding: 10px 30px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.big-header {
+  height: 600px;
+  background-image: url('');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
