@@ -2,10 +2,9 @@ import React from "react";
 import api from '../api';
 // import Moment from 'react-moment';
 import Moment from 'moment';
-import { extendMoment } from 'moment-range';
- 
-const moment = extendMoment(Moment);
+import { Link } from "react-router-dom";
 
+ 
 
 class SearchList extends React.Component {
   constructor(props) {
@@ -35,27 +34,9 @@ componentDidMount() {
 
 
   render() { 
+    const { params } = this.props.match;
     const { searchArray } = this.state;
     console.log('This is my searchArray', searchArray);
-    let myDaysInRange = [];
-    let searchDaysInRange = [];
-
-
-//   for (var i=0; i<searchArray.length; i++ )
-// {
-//   for (var j=0; j<searchArray[i].mySearch.selectedDays.length; j++ )
-//   {
-//   let eachMyDay = searchArray[i].mySearch.selectedDays[j];
-//   const start = new Date(searchArray[i].dateRangeMatch.dateRangeIntersection.start);
-//   const end   = new Date(searchArray[i].dateRangeMatch.dateRangeIntersection.end);
-//   const range = moment.range(start, end);
-
-//   if (Moment(range.contains(eachMyDay))){
-//     myDaysInRange.push(eachMyDay);
-//   } 
-//   }
-// }
-
 
     return ( 
       <div>
@@ -85,7 +66,6 @@ componentDidMount() {
       {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.end).format('DD-MM-YYYY')}      
 
       
-        <p>Date Match : {((((new Date(oneSearch.dateRangeMatch.dateRangeIntersection.end).getTime() - new Date(oneSearch.dateRangeMatch.dateRangeIntersection.start).getTime()) /1000/60/60/24)/ oneSearch.dateRangeMatch.myStartToEndDate) * 100).toFixed(0)}% </p> 
         </div>
 
       {/* -------------------------------------------------------------------------------- */}
@@ -93,9 +73,11 @@ componentDidMount() {
       {/* -------------------------------------------------------------------------------- */}
      
       <p>Max Price: {oneSearch.searchObject.maxPrice}</p>
+      <p>Date Range Match : {((((new Date(oneSearch.dateRangeMatch.dateRangeIntersection.end).getTime() - new Date(oneSearch.dateRangeMatch.dateRangeIntersection.start).getTime()) /1000/60/60/24)/ oneSearch.dateRangeMatch.myStartToEndDate) * 100).toFixed(0)}% </p> 
       <p>Pourcentage Matching Max Price: {(oneSearch.priceMatch).toFixed(0)}%</p>
-
-
+      <p>Days Selected Match: {(oneSearch.scoreSelectedDays).toFixed(0)}%</p>
+      <p>Total Match: {((((((new Date(oneSearch.dateRangeMatch.dateRangeIntersection.end).getTime() - new Date(oneSearch.dateRangeMatch.dateRangeIntersection.start).getTime()) /1000/60/60/24)/ oneSearch.dateRangeMatch.myStartToEndDate) * 100) + oneSearch.priceMatch + (oneSearch.scoreSelectedDays*2))/4).toFixed(0)}%</p>
+      <p><Link to={{pathname:`/search/${params.searchId}/details`, state: {oneSearch}}}>See more details</Link></p>
 
       </li>
       )}

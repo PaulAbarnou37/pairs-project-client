@@ -9,6 +9,7 @@ import HomePage from './components/HomePage';
 import Login from './components/Login';
 import Search from './components/Search';
 import SearchList from './components/SearchList';
+import ResultPage from './components/ResultPage';
 
 
 class App extends Component {
@@ -80,7 +81,9 @@ class App extends Component {
           <Route exact path="/search" render={() =>
             <Search currentUser={currentUser}/>
           }/>
-          <Route path="/search/:searchId" component={SearchList} />
+          <Route exact path="/search/:searchId" component={SearchList} />
+
+          <Route path="/search/:searchId/details" component={ResultPage} />
 
           <Route component={NotFound} />
         </Switch>
