@@ -3,26 +3,53 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import api from '../api';
 import { Redirect } from "react-router-dom";
+import Helmet from 'react-helmet';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import { formatDate, parseDate } from 'react-day-picker/moment';
+import moment from 'moment';
 
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
+    this.handleFromChange = this.handleFromChange.bind(this);
+    this.handleToChange = this.handleToChange.bind(this);
+    this.state = {
+      from: undefined,
+      to: undefined,
+    };
     this.state = { 
       owner: "",
-      city: "Paris",
+      city: "",
       startDate: "",
       endDate: "",
       selectedDays: [],
-      maxPrice: "600",
+      maxPrice: "",
       isSubmitSuccess: false,
       searchId: "",
      };
      this.handleDayClick = this.handleDayClick.bind(this);  
   }
 
- 
+  showFromMonth() {
+    const { startDate, endDate } = this.state;
+    if (!startDate) {
+      return;
+    }
+    if (moment(endDate).diff(moment(startDate), 'months') < 2) {
+      this.endDate.getDayPicker().showMonth(startDate);
+    }
+  }
 
+  handleFromChange(startDate) {
+    // Change the from date and focus the "to" input field
+    this.setState({ startDate });
+  }
+  handleToChange(endDate) {
+    this.setState({ endDate }, this.showFromMonth);
+  }
+ 
 
   //Multi-date picker
   handleDayClick(day, { selected }) {
@@ -91,6 +118,8 @@ class Search extends React.Component {
 
 
   render() { 
+    const { from, to } = this.state;
+    const modifiers = { start: from, end: to };
     const {isSubmitSuccess, owner, city, startDate, endDate, selectedDays, maxPrice, searchId} = this.state;
   
     if (isSubmitSuccess) {
@@ -102,43 +131,77 @@ class Search extends React.Component {
     
     return (  
     
-      <section>
-        <h2>Search</h2>
-
+      <section className="search-form">
+      <h1>Make your search here 🤓!</h1>
         <form onSubmit={event => this.handleSubmit(event)}>
-          <label>
-            City:
-            <input value={city} type="text" placeholder="Paris"
+        <div className='row'>
+        <div>
+            <label className="input-form">
+            <input value={city} type="text" placeholder=" 🏢 City"
                 onChange={event => this.updateCity(event)} />
-          </label>
-          <br/>
-          <label>
-            Maximum Price/Month:
-            <input value={maxPrice} type="number" placeholder="Type your maximum price"
-                onChange={event => this.updateMaxPrice(event)} />
-          </label>
-          <br/>
-          <label>
-            From:
-            <input value={startDate} type="date" placeholder=""
-                onChange={event => this.updateStartDate(event)} />
-          </label>
-          <br/>
-          <label>
-            To:
-            <input value={endDate} type="date" placeholder=""
-                onChange={event => this.updateEndDate(event)} />
-          </label>
-          <br/>
+            </label>
+            <label className="input-form">
+              <input  value={maxPrice} type="number" placeholder=" 💵 Type your max. monthly rent in $"
+                  onChange={event => this.updateMaxPrice(event)} />
+            </label>
+        
+        
+          <div>
+        <DayPickerInput className="range-picker"
+          value={startDate}
+          placeholder=" 🗓 From"
+          format="LL"
+          formatDate={formatDate}
+          parseDate={parseDate}
+          dayPickerProps={{
+            selectedDays: [startDate, { startDate, endDate }],
+            disabledDays: { after: endDate },
+            toMonth: endDate,
+            modifiers,
+            numberOfMonths: 1,
+            onDayClick: () => this.endDate.getInput().focus(),
+          }}
+          onDayChange={this.handleFromChange}
+          />{' '}
+        -{' '}
+          <DayPickerInput className="range-picker"
+            ref={el => (this.endDate = el)}
+            value={endDate}
+            placeholder=" 🗓 To"
+            format="LL"
+            formatDate={formatDate}
+            parseDate={parseDate}
+            dayPickerProps={{
+              selectedDays: [startDate, { startDate, endDate }],
+              disabledDays: { before: startDate },
+              modifiers,
+              month: startDate,
+              fromMonth: startDate,
+              numberOfMonths: 1,
+            }}
+            onDayChange={this.handleToChange}
+            />
+          </div>
+          </div>
+          
+       
+          <div>
           <label>
             Pick your dates:
             <br/>
+
             <DayPicker
-          selectedDays={this.state.selectedDays}
-          onDayClick={this.handleDayClick}
-        />
+              selectedDays={this.state.selectedDays}
+              onDayClick={this.handleDayClick}
+              month= {new Date(2018,5,1)}
+              // fromMonth= {new Date(this.state.startDate)}
+              // toMonth= {new Date(this.state.endDate)}
+              />
           </label>
-          <br/>
+          </div>
+          </div>
+
+
           <button>Search</button>
         </form>
       </section>

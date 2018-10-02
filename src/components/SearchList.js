@@ -40,45 +40,67 @@ componentDidMount() {
 
     return ( 
       <div>
-      <ul>
+        
+      <ul className="search-element">
       {searchArray.map((oneSearch, index) => 
-      <li className="search-element" key= {index}> 
-      {oneSearch.searchObject.owner.firstName} {oneSearch.searchObject.owner.lastName} 
-      
-      <p><span>Posted on </span>        
+      <li key= {index}> 
+  
+  <div class="box">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-64x64">
+        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"/>
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>{oneSearch.searchObject.owner.firstName} {oneSearch.searchObject.owner.lastName}</strong> <small> <p><span>Posted on </span>        
         {Moment(oneSearch.searchObject.createdAt).format('DD-MM-YYYY')}
-      </p>
-      <p>City: {oneSearch.searchObject.city}</p>
+      </p></small>
+         
+          <br/>
+          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+          <span>{oneSearch.searchObject.owner.firstName} will be in Paris from </span>
+          {Moment(oneSearch.searchObject.startDate).format('DD MMM YYYY')}      
+          <span> to </span> 
+          {Moment(oneSearch.searchObject.endDate).format('DD MMM YYYY')}
+          <p>Date Range in common: {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.start).format('DD MMM YYYY')} - {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.end).format('DD MMM YYYY')}</p>
+          <div className="match-results">
+          <p><span className="search-bold-text">Date Range:</span><br/><span className="pourcentage-match">{((((new Date(oneSearch.dateRangeMatch.dateRangeIntersection.end).getTime() - new Date(oneSearch.dateRangeMatch.dateRangeIntersection.start).getTime()) /1000/60/60/24)/ oneSearch.dateRangeMatch.myStartToEndDate) * 100).toFixed(0)}%</span> </p> 
+          <p><span className="search-bold-text">Max Price:</span><br/><span className="pourcentage-match">{(oneSearch.priceMatch).toFixed(0)}%</span></p>
+          <p><span className="search-bold-text">Days Selected:</span><br/><span className="pourcentage-match">{(oneSearch.scoreSelectedDays).toFixed(0)}%</span></p>
+          <p className="search-total-text"><span className="search-bold-text">Total:</span><br/><span className="pourcentage-match">{((((((new Date(oneSearch.dateRangeMatch.dateRangeIntersection.end).getTime() - new Date(oneSearch.dateRangeMatch.dateRangeIntersection.start).getTime()) /1000/60/60/24)/ oneSearch.dateRangeMatch.myStartToEndDate) * 100) + oneSearch.priceMatch + (oneSearch.scoreSelectedDays*2))/4).toFixed(0)}%</span></p>
+          </div>
+          <Link to={{pathname:`/search/${params.searchId}/details`, state: {oneSearch}}}>See more details 🔍</Link>
 
-      {/* -------------------------------------------------------------------------------- */}
-      {/* ------------------------START RANGE DATE CALCULATION---------------------------- */}
-      {/* -------------------------------------------------------------------------------- */}
+          
 
-      <span>From: </span>
-      {Moment(oneSearch.searchObject.startDate).format('DD-MM-YYYY')}      
-      <span> to: </span> 
-      {Moment(oneSearch.searchObject.endDate).format('DD-MM-YYYY')}      
-
-      
-      <div> <span> Date range in common : from </span>
-      {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.start).format('DD-MM-YYYY')}      
-        <span> to </span>
-      {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.end).format('DD-MM-YYYY')}      
-
-      
+        </p>
+      </div>
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <a class="level-item" aria-label="reply">
+            <span class="icon is-small">
+              <i class="fas fa-reply" aria-hidden="true"></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="retweet">
+            <span class="icon is-small">
+              <i class="fas fa-retweet" aria-hidden="true"></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="like">
+            <span class="icon is-small">
+              <i class="fas fa-heart" aria-hidden="true"></i>
+            </span>
+          </a>
         </div>
-
-      {/* -------------------------------------------------------------------------------- */}
-      {/* ------------------------MAX PRICE MATCH CALCULATION----------------------------- */}
-      {/* -------------------------------------------------------------------------------- */}
-     
-      <p>Max Price: {oneSearch.searchObject.maxPrice}</p>
-      <p>Date Range Match : {((((new Date(oneSearch.dateRangeMatch.dateRangeIntersection.end).getTime() - new Date(oneSearch.dateRangeMatch.dateRangeIntersection.start).getTime()) /1000/60/60/24)/ oneSearch.dateRangeMatch.myStartToEndDate) * 100).toFixed(0)}% </p> 
-      <p>Pourcentage Matching Max Price: {(oneSearch.priceMatch).toFixed(0)}%</p>
-      <p>Days Selected Match: {(oneSearch.scoreSelectedDays).toFixed(0)}%</p>
-      <p>Total Match: {((((((new Date(oneSearch.dateRangeMatch.dateRangeIntersection.end).getTime() - new Date(oneSearch.dateRangeMatch.dateRangeIntersection.start).getTime()) /1000/60/60/24)/ oneSearch.dateRangeMatch.myStartToEndDate) * 100) + oneSearch.priceMatch + (oneSearch.scoreSelectedDays*2))/4).toFixed(0)}%</p>
-      <p><Link to={{pathname:`/search/${params.searchId}/details`, state: {oneSearch}}}>See more details</Link></p>
-
+      </nav>
+    </div>
+  </article>
+</div>
+    
       </li>
       )}
       </ul>

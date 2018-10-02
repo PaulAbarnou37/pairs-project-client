@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from "react-router-dom";
+import 'bulma/css/bulma.css'
 import './App.css';
 import api from './api';
 import Navigation from './components/Navigation';
@@ -10,6 +11,7 @@ import Login from './components/Login';
 import Search from './components/Search';
 import SearchList from './components/SearchList';
 import ResultPage from './components/ResultPage';
+
 
 
 class App extends Component {
@@ -37,7 +39,7 @@ class App extends Component {
     this.setState({ currentUser: userDoc });
   }
 
-  logoutClick() {
+  logoutClick = () => {
     api.delete("/logout")
       .then(() => {
         this.updateUser(null);
@@ -53,16 +55,11 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <Navigation currentUser={currentUser} />
-
-          {currentUser && (
-            <span>
-              <b>{currentUser.email}</b>
-              <button onClick={() => this.logoutClick()}>
-                Log Out
-              </button>
-            </span>
-          )}
+          <Navigation
+            onLogOut={() => this.logoutClick()}
+            currentUser={currentUser}
+            onClick={() => this.logoutClick()}
+          />
         </header>
 
         <Switch>
