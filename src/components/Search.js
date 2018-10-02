@@ -132,21 +132,26 @@ class Search extends React.Component {
     return (  
     
       <section className="search-form">
-      <h1>Make your search here 🤓!</h1>
+      <h1>Make your search here! 🤓</h1>
+      <div className="box">
         <form onSubmit={event => this.handleSubmit(event)}>
         <div className='row'>
         <div>
             <label className="input-form">
-            <input value={city} type="text" placeholder=" 🏢 City"
+            City
+            <input value={city} type="text" placeholder=" 🏢 e.g. Paris"
                 onChange={event => this.updateCity(event)} />
             </label>
             <label className="input-form">
-              <input  value={maxPrice} type="number" placeholder=" 💵 Type your max. monthly rent in $"
+            Your max. monthly rent in $
+              <input  value={maxPrice} type="number" placeholder=" 💵 500$"
                   onChange={event => this.updateMaxPrice(event)} />
             </label>
         
         
           <div>
+            Your date range:
+            <br/>
         <DayPickerInput className="range-picker"
           value={startDate}
           placeholder=" 🗓 From"
@@ -184,7 +189,8 @@ class Search extends React.Component {
           </div>
           </div>
           
-       
+
+
           <div>
           <label>
             Pick your dates:
@@ -202,8 +208,10 @@ class Search extends React.Component {
           </div>
 
 
-          <button>Search</button>
         </form>
+        <button>Search</button>
+
+        </div>
       </section>
 
     );

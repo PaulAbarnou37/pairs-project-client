@@ -1,5 +1,7 @@
 import React from "react";
 import api from '../api';
+import { Redirect } from "react-router-dom";
+
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -84,15 +86,7 @@ class SignUp extends React.Component {
     const { currentUser } = this.props;
     const { firstName, lastName, dateOfBirth, description, fbProfile, linkedInProfile, email, avatar, originalPassword } = this.state;
     if (currentUser) {
-      return (
-        <section>
-          <h2>You are signed up!</h2>
-          <p>
-            Welcome, {currentUser.fullName}.
-            Your user ID is <b>{currentUser._id}</b>.
-          </p>
-        </section>
-      );
+      return <Redirect to="/" />
     }
 
     return (

@@ -7,10 +7,10 @@ function HomePage(props) {
   return (
     <section className="big-header">
     <div className="header-text">
-      <h2>Find someone who is here when you’re not  </h2>
+      <h2>Pairs In Paris</h2>
    
-      <p>Pairs lets you find someone to share your room with during the time you’re </p>
-      <button type="button" class="btn btn-primary"><Link className="search-homepage" to="/search">Start Your Search 🔍</Link></button>
+      <p>A collaborative platform for people who needs to be in Paris few days per week on a regular basis.</p>
+      <Link className="search-homepage" to="/search"><button type="button" class="btn btn-primary">Start Your Search 🔍</button></Link>
 
       </div>
       {/* <img src="../../images/pairs-background.png" alt=""/> */}
