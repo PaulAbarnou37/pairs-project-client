@@ -22,7 +22,7 @@ function Navigation(props) {
         </button>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#">Edit my profile</a>
-          <a class="dropdown-item" href="#">My searches</a>
+          <a class="dropdown-item" href="#"><NavLink to="/mysearches">My searches</NavLink></a>
           <div class="dropdown-divider"></div>
           <a onClick={() => props.onClick()} class="dropdown-item" href="#">Log Out</a>
         </div>

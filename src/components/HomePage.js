@@ -13,7 +13,6 @@ function HomePage(props) {
       <Link className="search-homepage" to="/search"><button type="button" class="btn btn-primary">Start Your Search 🔍</button></Link>
 
       </div>
-      {/* <img src="../../images/pairs-background.png" alt=""/> */}
     </section>
   );
 }

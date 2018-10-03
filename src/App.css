@@ -122,7 +122,7 @@ input {
   text-decoration: none;
 }
 
-.box {
+.box-resultslist {
   margin: 20px auto;
   width:1000px;
 }
@@ -180,6 +180,51 @@ input {
   background-color: #44AF69;
 }
 
+.icon-box-mysearch {
+  width: 20px;
+  height: auto;
+  float: right;
+}
+
+.box-mysearch {
+  width: 346px;
+  height: 280px; 
+  margin: 30px;
+}
+
+.all-boxes { 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.section-all-boxes > hr {
+  width: 85%;
+  margin: 20px auto;
+}
+
+.section-all-boxes h1 {
+  font-size: 36px;
+  margin: 37px;
+  font-weight: 800;
+}
+
+.box-mysearch > h3 {
+  margin: 30px;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.box-mysearch > hr {
+  margin: 15px 0;
+} 
+
+.icon-box-information {
+  width: 30px;
+  height: auto;
+}
 
 
 

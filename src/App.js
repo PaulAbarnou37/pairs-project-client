@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Search from './components/Search';
 import SearchList from './components/SearchList';
 import ResultPage from './components/ResultPage';
+import MySearches from './components/MySearches'
 
 
 
@@ -79,6 +80,8 @@ class App extends Component {
             <Search currentUser={currentUser}/>
           }/>
           <Route exact path="/search/:searchId" component={SearchList} />
+
+          <Route exact path="/mysearches" component={MySearches} />
 
           <Route path="/search/:searchId/details" component={ResultPage} />
 

@@ -199,17 +199,17 @@ class Search extends React.Component {
             <DayPicker
               selectedDays={this.state.selectedDays}
               onDayClick={this.handleDayClick}
-              month= {new Date(2018,5,1)}
-              // fromMonth= {new Date(this.state.startDate)}
-              // toMonth= {new Date(this.state.endDate)}
+              month= {this.state.startDate ? new Date(this.state.startDate) : new Date()}
+              fromMonth= {new Date(this.state.startDate)}
+              toMonth= {new Date(this.state.endDate)}
               />
           </label>
           </div>
           </div>
 
 
-        </form>
         <button>Search</button>
+        </form>
 
         </div>
       </section>

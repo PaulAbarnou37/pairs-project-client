@@ -34,14 +34,25 @@ componentDidMount() {
 
 ratioSearchArray (){
   const {searchArray} = this.state;
-  const newSearchArray = [...searchArray]
+  const newSearchArray = [...searchArray];
+  const { params } = this.props.match;
+
     newSearchArray.map(oneSearch => {
     oneSearch.dateRangeRatio = Number(((((new Date(oneSearch.dateRangeMatch.dateRangeIntersection.end).getTime() - new Date(oneSearch.dateRangeMatch.dateRangeIntersection.start).getTime()) /1000/60/60/24)/ oneSearch.dateRangeMatch.myStartToEndDate) * 100).toFixed(0));
     oneSearch.totalMatchRatio = ((oneSearch.dateRangeRatio + Number(oneSearch.priceMatch) + Number(oneSearch.scoreSelectedDays)*2)/4).toFixed(0);
   })
   this.setState({searchArray : newSearchArray})
   this.sortSearchArray();
-}
+  api.post(`/searches/${params.searchId}`, newSearchArray)
+        .then(response => {
+          console.log("All my results :", response.data);
+        })
+        .catch(err => {
+          console.log(err);
+          alert("Sorry! Something went wrong. 💩");
+        });
+}                                                                                        
+
 
 sortSearchArray (){
   const { searchArray } = this.state;
@@ -67,7 +78,7 @@ sortSearchArray (){
       {searchArray.map((oneSearch, index) => 
       <li key= {index}> 
   
-  <div class="box">
+  <div class="box box-resultslist">
   <article class="media">
     <div class="media-left">
       <figure class="image is-64x64">
