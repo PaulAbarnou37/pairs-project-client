@@ -1,6 +1,7 @@
 import React from "react";
 import api from '../api';
 import Moment from 'moment';
+import { Link } from "react-router-dom";
 
 
 
@@ -13,22 +14,35 @@ class MySearches extends React.Component {
      }
   }
 
-// called automatically by React when the COMPONENT LOADS
-componentDidMount() {
+  // called automatically by React when the COMPONENT LOADS
+  componentDidMount() {
+    this.getSearches();
+  }
 
-  // make the request to the API as soon as the component loads
-  api.get("/mysearches/")
-    .then(response => {
-      console.log("All my searches: ", response.data);
-      // when we get the data back setState() to update
-      this.setState({ mySearchesArray: response.data} );
-      console.log(this.state);
-    })
-    .catch(err => {
-      console.log(err);
-      alert("Sorry! Something went wrong. 💩");
-    });
-}
+  getSearches() {
+    // make the request to the API as soon as the component loads
+    api.get("/mysearches/")
+      .then(response => {
+        // when we get the data back setState() to update
+        this.setState({ mySearchesArray: response.data} );
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Sorry! Something went wrong. 💩");
+      });
+  }
+
+  removeBox(id){
+    api.delete(`/searches/${id}`)
+      .then(response => {
+        this.getSearches();
+      })
+      .catch(err => {
+        console.log("error", err);
+        alert("Sorry! Something went wrong")
+      })
+  }
+// /search/${id}
 
   render() { 
     const {mySearchesArray} = this.state;
@@ -39,23 +53,26 @@ componentDidMount() {
         <hr/>
       <div className="all-boxes">
       {mySearchesArray.map((oneSearch, index) =>
+      // <Link to={`/search/${oneSearch._id}`}><p> Hey </p></Link>
         <div className="box box-mysearch">
-          <img className="icon-box-mysearch" src="./images/delete-button.svg" alt=""/>
+        
+        <div className="div-img-delete"><img key={index} onClick={ () => this.removeBox(oneSearch._id)} className="icon-box-mysearch" src="./images/delete-button.svg" alt=""/></div>
           <h3>{oneSearch.city}</h3>
-          <div>
-            <li>Date range: {Moment(oneSearch.startDate).format('DD MMM YY')} - {Moment(oneSearch.endDate).format('DD MMM YY')}</li>
-            <li>Maximum Monthly Rent: {oneSearch.maxPrice}$</li>
-            <li>Days you picked: see the days</li>
+          <div className="primary-info-box">
+            <li><span>Date range:</span> {Moment(oneSearch.startDate).format('DD MMM YY')} - {Moment(oneSearch.endDate).format('DD MMM YY')}</li>
+            <li><span>Maximum Monthly Rent:</span> {oneSearch.maxPrice}$</li>
+            <li><span>Days you picked:</span> see the days</li>
           </div>
           <hr/>
-          <div>
-            <img className="icon-box-information" src="./images/information.svg" alt=""/>
-            <div>
+          <div className="information-my-box">
+            <div className="img-information"><img className="icon-box-information" src="./images/information.svg" alt=""/></div>
+            <div className="stats-my-box">
               <li>Number of results: {oneSearch.results.length}</li>
               <li>Max Total Ratio: { (oneSearch.results.length) ? Math.max.apply(null, oneSearch.results) : "-"}</li>
             </div>
           </div>
         </div>
+        
         )}
         </div>
       </section>

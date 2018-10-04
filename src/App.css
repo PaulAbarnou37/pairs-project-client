@@ -92,8 +92,10 @@ header {
   display: block;
 }
 
-.input-form input {
+.input-form > input {
   width: 100%;
+  box-sizing: border-box;
+  padding-left: 20px;
 }
 
 input {
@@ -183,13 +185,28 @@ input {
 .icon-box-mysearch {
   width: 20px;
   height: auto;
+}
+
+.div-img-delete {
+  width: 30px;
+  height: 30px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
   float: right;
+  border: 1px solid #cdcaca;
+  border-radius: 6px;
+}
+
+.div-img-delete:hover {
+  box-shadow: 2px 2px 2px #cdcaca;
 }
 
 .box-mysearch {
   width: 346px;
-  height: 280px; 
+  height: auto; 
   margin: 30px;
+
 }
 
 .all-boxes { 
@@ -207,8 +224,11 @@ input {
 
 .section-all-boxes h1 {
   font-size: 36px;
-  margin: 37px;
-  font-weight: 800;
+    font-weight: 800;
+    text-align: left;
+    margin-top: 60px;
+    margin-left: 144px;
+    margin-bottom: 10px;
 }
 
 .box-mysearch > h3 {
@@ -225,6 +245,82 @@ input {
   width: 30px;
   height: auto;
 }
+
+.information-my-box {
+  display: flex;
+  margin: 0px auto;
+  width:202px;
+}
+
+.stats-my-box {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.stats-my-box > li {
+  list-style-type: none;
+}
+
+.img-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.primary-info-box > li {
+  list-style-type: none;
+  margin: 10px;
+}
+
+.primary-info-box {
+  text-align: left;
+}
+
+.primary-info-box {
+  text-align: left;
+}
+
+.primary-info-box > li > span {
+  color: #528add;
+  font-weight: 700;
+}
+
+.left-search-form {
+  width: 367px;
+  box-sizing: border-box;
+}
+
+.range-picker {
+  font-family: lato;
+}
+
+.two-range-picker {
+  box-sizing: border-box;
+  display:flex;
+  justify-content: center;
+}
+
+.DayPickerInput > input {
+  width: 170px;
+  padding: 11px;
+}
+
+.weekday-picker {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.weekday-picker > div {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  background-color: black;
+}
+
+
+
+
 
 
 

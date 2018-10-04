@@ -8,6 +8,8 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import { formatDate, parseDate } from 'react-day-picker/moment';
 import moment from 'moment';
+// import MyComponent from './MultiDayPicker';
+
 
 
 class Search extends React.Component {
@@ -15,10 +17,6 @@ class Search extends React.Component {
     super(props);
     this.handleFromChange = this.handleFromChange.bind(this);
     this.handleToChange = this.handleToChange.bind(this);
-    this.state = {
-      from: undefined,
-      to: undefined,
-    };
     this.state = { 
       owner: "",
       city: "",
@@ -28,6 +26,9 @@ class Search extends React.Component {
       maxPrice: "",
       isSubmitSuccess: false,
       searchId: "",
+      everyWeekDay: [],
+      from: undefined,
+      to: undefined,
      };
      this.handleDayClick = this.handleDayClick.bind(this);  
   }
@@ -91,6 +92,38 @@ class Search extends React.Component {
     const { value } = event.target;
     this.setState({ datePicked: value });
   }
+  
+
+
+  
+getDates(startDate, stopDate) {
+    var dateArray = [];
+    var currentDate = moment(startDate);
+    var stopDate = moment(stopDate);
+    while (currentDate <= stopDate) {
+        dateArray.push( moment(currentDate).format('YYYY-MM-DD') )
+        currentDate = moment(currentDate).add(1, 'days');
+    }
+    return dateArray;
+}
+
+selectWeekDay (dayOfWeek){
+  console.log('this is my weekday', dayOfWeek)
+  const { startDate, endDate, selectedDays } = this.state;
+  let datesArray = this.getDates(startDate, endDate);
+  let everyDayOfWeeks = [...selectedDays];
+  datesArray.forEach(oneDay => {
+    if (moment(oneDay).day() === dayOfWeek){
+      everyDayOfWeeks.push(new Date(oneDay));
+    }
+  })
+  this.setState({selectedDays: everyDayOfWeeks})
+  console.log(everyDayOfWeeks);
+  }
+
+
+
+
 
 // On form submit
 
@@ -119,6 +152,7 @@ class Search extends React.Component {
 
   render() { 
     const { from, to } = this.state;
+
     const modifiers = { start: from, end: to };
     const {isSubmitSuccess, owner, city, startDate, endDate, selectedDays, maxPrice, searchId} = this.state;
   
@@ -136,7 +170,7 @@ class Search extends React.Component {
       <div className="box">
         <form onSubmit={event => this.handleSubmit(event)}>
         <div className='row'>
-        <div>
+        <div className="left-search-form">
             <label className="input-form">
             City
             <input value={city} type="text" placeholder=" 🏢 e.g. Paris"
@@ -149,7 +183,7 @@ class Search extends React.Component {
             </label>
         
         
-          <div>
+          <div className="two-range">
             Your date range:
             <br/>
         <DayPickerInput className="range-picker"
@@ -187,6 +221,21 @@ class Search extends React.Component {
             onDayChange={this.handleToChange}
             />
           </div>
+        
+
+
+          <div class="weekday-picker">
+          <div onClick={() => this.selectWeekDay(0)}>Sunday</div>
+          <div onClick={() => this.selectWeekDay(1)}>Monday</div>
+          <div onClick={() => this.selectWeekDay(2)}>Tuesday</div>
+          <div onClick={() => this.selectWeekDay(3)}>Wednesday</div>
+          <div onClick={() => this.selectWeekDay(4)}>Thursday</div>
+          <div onClick={() => this.selectWeekDay(5)}>Friday</div>
+          <div onClick={() => this.selectWeekDay(6)}>Saturday</div>
+          </div>
+
+
+        
           </div>
           
 
@@ -198,6 +247,7 @@ class Search extends React.Component {
 
             <DayPicker
               selectedDays={this.state.selectedDays}
+              
               onDayClick={this.handleDayClick}
               month= {this.state.startDate ? new Date(this.state.startDate) : new Date()}
               fromMonth= {new Date(this.state.startDate)}
