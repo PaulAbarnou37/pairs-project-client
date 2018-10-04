@@ -111,15 +111,23 @@ selectWeekDay (dayOfWeek){
   console.log('this is my weekday', dayOfWeek)
   const { startDate, endDate, selectedDays } = this.state;
   let datesArray = this.getDates(startDate, endDate);
-  let everyDayOfWeeks = [...selectedDays];
-  datesArray.forEach(oneDay => {
-    if (moment(oneDay).day() === dayOfWeek){
-      everyDayOfWeeks.push(new Date(oneDay));
-    }
-  })
+
+  let everyDayOfWeeks = selectedDays.filter(oneSelectedDay => {
+    return moment(oneSelectedDay).day() !== dayOfWeek;
+  });
+
+  if (everyDayOfWeeks.length === selectedDays.length) {
+    datesArray.forEach(oneDay => {
+      if (moment(oneDay).day() === dayOfWeek){
+        everyDayOfWeeks.push(new Date(oneDay));
+      }
+    })
+  };
+
   this.setState({selectedDays: everyDayOfWeeks})
+   
   console.log(everyDayOfWeeks);
-  }
+}
 
 
 
@@ -221,21 +229,11 @@ selectWeekDay (dayOfWeek){
             onDayChange={this.handleToChange}
             />
           </div>
-        
-
-
-          <div class="weekday-picker">
-          <div onClick={() => this.selectWeekDay(0)}>Sunday</div>
-          <div onClick={() => this.selectWeekDay(1)}>Monday</div>
-          <div onClick={() => this.selectWeekDay(2)}>Tuesday</div>
-          <div onClick={() => this.selectWeekDay(3)}>Wednesday</div>
-          <div onClick={() => this.selectWeekDay(4)}>Thursday</div>
-          <div onClick={() => this.selectWeekDay(5)}>Friday</div>
-          <div onClick={() => this.selectWeekDay(6)}>Saturday</div>
-          </div>
-
 
         
+               
+
+
           </div>
           
 
@@ -244,7 +242,22 @@ selectWeekDay (dayOfWeek){
           <label>
             Pick your dates:
             <br/>
-
+            <div class="weekDays-selector">
+  <input type="checkbox" id="weekday-mon" class="weekday" />
+  <label onClick={() => this.selectWeekDay(1)} for="weekday-mon">M</label>
+  <input type="checkbox" id="weekday-tue" class="weekday" />
+  <label onClick={() => this.selectWeekDay(2)} for="weekday-tue">T</label>
+  <input type="checkbox" id="weekday-wed" class="weekday" />
+  <label onClick={() => this.selectWeekDay(3)} for="weekday-wed">W</label>
+  <input type="checkbox" id="weekday-thu" class="weekday" />
+  <label onClick={() => this.selectWeekDay(4)} for="weekday-thu">T</label>
+  <input type="checkbox" id="weekday-fri" class="weekday" />
+  <label onClick={() => this.selectWeekDay(5)} for="weekday-fri">F</label>
+  <input type="checkbox" id="weekday-sat" class="weekday" />
+  <label onClick={() => this.selectWeekDay(6)} for="weekday-sat">S</label>
+  <input type="checkbox" id="weekday-sun" class="weekday" />
+  <label onClick={() => this.selectWeekDay(0)} for="weekday-sun">S</label>
+          </div>   
             <DayPicker
               selectedDays={this.state.selectedDays}
               
