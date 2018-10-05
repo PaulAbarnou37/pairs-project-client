@@ -54,6 +54,7 @@ class Search extends React.Component {
 
   //Multi-date picker
   handleDayClick(day, { selected }) {
+    console.log(day);
     const { selectedDays } = this.state;
     if (selected) {
       const selectedIndex = selectedDays.findIndex(selectedDay =>
@@ -174,26 +175,29 @@ selectWeekDay (dayOfWeek){
     return (  
     
       <section className="search-form">
-      <h1>Make your search here! 🤓</h1>
+      <h1>Start your search</h1>
+
+      <h3>Fill the form below to get a full overview bla bla blah voila</h3>
+      
       <div className="box">
         <form onSubmit={event => this.handleSubmit(event)}>
         <div className='row'>
         <div className="left-search-form">
             <label className="input-form">
-            City
+            <p className="text-form"><img src="./images/one.svg"></img> City:</p>
             <input value={city} type="text" placeholder=" 🏢 e.g. Paris"
                 onChange={event => this.updateCity(event)} />
             </label>
             <label className="input-form">
-            Your max. monthly rent in $
+            <p className="text-form"><img src="./images/two.svg"></img> Your max. monthly rent in $:</p>
               <input  value={maxPrice} type="number" placeholder=" 💵 500$"
                   onChange={event => this.updateMaxPrice(event)} />
             </label>
         
         
           <div className="two-range">
-            Your date range:
-            <br/>
+            <p className="text-form"><img src="./images/three.svg"></img> Your date range:</p>
+            <div className="two-date-inside">
         <DayPickerInput className="range-picker"
           value={startDate}
           placeholder=" 🗓 From"
@@ -228,35 +232,38 @@ selectWeekDay (dayOfWeek){
             }}
             onDayChange={this.handleToChange}
             />
+            </div>
           </div>
+          <label className="input-form">
+            <p className="text-form"><img src="./images/four.svg"></img> Do you have a apartment available?</p>
+            
+              <input  value={maxPrice} type="number" placeholder=" 💵 500$"
+                  onChange={event => this.updateMaxPrice(event)} />
+            </label>
 
+          </div>
         
-               
 
+          <div className="form-calendar">
 
-          </div>
-          
-
-
-          <div>
-          <label>
-            Pick your dates:
+             
+            <div className="pick-your-date">Pick your dates:</div>
             <br/>
-            <div class="weekDays-selector">
-  <input type="checkbox" id="weekday-mon" class="weekday" />
-  <label onClick={() => this.selectWeekDay(1)} for="weekday-mon">M</label>
-  <input type="checkbox" id="weekday-tue" class="weekday" />
-  <label onClick={() => this.selectWeekDay(2)} for="weekday-tue">T</label>
-  <input type="checkbox" id="weekday-wed" class="weekday" />
-  <label onClick={() => this.selectWeekDay(3)} for="weekday-wed">W</label>
-  <input type="checkbox" id="weekday-thu" class="weekday" />
-  <label onClick={() => this.selectWeekDay(4)} for="weekday-thu">T</label>
-  <input type="checkbox" id="weekday-fri" class="weekday" />
-  <label onClick={() => this.selectWeekDay(5)} for="weekday-fri">F</label>
-  <input type="checkbox" id="weekday-sat" class="weekday" />
-  <label onClick={() => this.selectWeekDay(6)} for="weekday-sat">S</label>
-  <input type="checkbox" id="weekday-sun" class="weekday" />
-  <label onClick={() => this.selectWeekDay(0)} for="weekday-sun">S</label>
+            <div className="weekDays-selector">
+  <input type="checkbox" id="weekday-mon" className="weekday" />
+  <label onClick={() => this.selectWeekDay(1)} htmlFor="weekday-mon">M</label>
+  <input type="checkbox" id="weekday-tue" className="weekday" />
+  <label onClick={() => this.selectWeekDay(2)} htmlFor="weekday-tue">T</label>
+  <input type="checkbox" id="weekday-wed" className="weekday" />
+  <label onClick={() => this.selectWeekDay(3)} htmlFor="weekday-wed">W</label>
+  <input type="checkbox" id="weekday-thu" className="weekday" />
+  <label onClick={() => this.selectWeekDay(4)} htmlFor="weekday-thu">T</label>
+  <input type="checkbox" id="weekday-fri" className="weekday" />
+  <label onClick={() => this.selectWeekDay(5)} htmlFor="weekday-fri">F</label>
+  <input type="checkbox" id="weekday-sat" className="weekday" />
+  <label onClick={() => this.selectWeekDay(6)} htmlFor="weekday-sat">S</label>
+  <input type="checkbox" id="weekday-sun" className="weekday" />
+  <label onClick={() => this.selectWeekDay(0)} htmlFor="weekday-sun">S</label>
           </div>   
             <DayPicker
               selectedDays={this.state.selectedDays}
@@ -266,7 +273,7 @@ selectWeekDay (dayOfWeek){
               fromMonth= {new Date(this.state.startDate)}
               toMonth= {new Date(this.state.endDate)}
               />
-          </label>
+
           </div>
           </div>
 

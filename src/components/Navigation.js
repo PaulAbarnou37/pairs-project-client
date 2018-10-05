@@ -11,20 +11,20 @@ function Navigation(props) {
     <nav className="navbar navbar-expand-md sticky-top">
     <ul className="navbar-nav">
     
-      <a className="each-link" href=""><NavLink className="navbar-brand" to="/"><img src="../../images/Logo-Pairs.png" alt=""/></NavLink></a>
+    <NavLink className="navbar-brand each-link" to="/"><img src="../../images/Logo-Pairs.png" alt=""/></NavLink>
       <div className="link-nav">
       <li className="nav-item each-link"><NavLink className="navlink" exact to="/search">Search</NavLink></li>
 
       {currentUser && (
-      <div class="btn-group">
-        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div className="btn-group">
+        <button type="button" className="btn btn-success dropdown-toggle btn-green" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Hi, {currentUser.firstName} 🖖
         </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Edit my profile</a>
-          <a class="dropdown-item" href="#"><NavLink to="/mysearches">My searches</NavLink></a>
-          <div class="dropdown-divider"></div>
-          <a onClick={() => props.onClick()} class="dropdown-item" href="#">Log Out</a>
+        <div className="dropdown-menu">
+          <a className="dropdown-item" href="#">Edit my profile</a>
+          <NavLink className="dropdown-item" to="/mysearches">My searches</NavLink>
+          <div className="dropdown-divider"></div>
+          <a onClick={() => props.onClick()} className="dropdown-item" href="#">Log Out</a>
         </div>
       </div>
       )}

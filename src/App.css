@@ -83,7 +83,6 @@ header {
 .search-form h1 {
   font-size: 32px;
   margin: 10px 0;
-  border-bottom: 3px solid;
 }
 
 .input-form { 
@@ -126,16 +125,13 @@ input {
 
 .box-resultslist {
   margin: 20px auto;
-  width:1000px;
+  width:97%;
 }
 
 .match-results {
   display: flex;
 }
 
-.match-results p {
-  margin-right: 40px;
-}
 
 .pourcentage-match { 
   font-size: 20px;
@@ -175,7 +171,9 @@ input {
 
 .search-form .box {
   margin: 20px auto;
-  width:48%;
+  width:54%;
+  display: flex;
+  justify-content: center;
 }
 
 .btn-success {
@@ -216,6 +214,8 @@ input {
   width: 85%;
   margin: 0 auto;
 }
+
+
 
 .section-all-boxes > hr {
   width: 85%;
@@ -286,7 +286,6 @@ input {
 }
 
 .left-search-form {
-  width: 367px;
   box-sizing: border-box;
 }
 
@@ -340,6 +339,88 @@ input {
   color: #ffffff;
 }
 
+.text-form { 
+  margin: 10px;
+  text-align: left;
+}
+
+.box > form { 
+  width:100%;
+}
+
+.form-calendar{
+  width: 45%;
+}
+
+.row {
+  justify-content:space-around;
+}
+
+.pick-your-date {
+  margin-top: 20px;
+}
+
+.input-form > p {
+  text-align: left;
+}
+
+.text-form > img {
+  width: 25px;
+}
+
+.DayPickerInput > input::placeholder {
+  color: #cdcaca;
+}
+
+.input-form > input::placeholder {
+  color: #cdcaca;
+}
+
+.btn-green {
+  background-color:#72ae8b;
+  color: white;
+}
+
+.block-content {
+  display:flex;
+}
+
+.match-results > div > div > img {
+  width: 20px;
+  height: 20px;
+}
+
+.ratio-result-box {
+  width: 25%;
+}
+
+.search-form > h3 {
+  margin: 20px 0;
+  font-size: 20px;
+  color: grey;
+}
+
+.fb-icons {
+  display:flex;
+  justify-content: space-between;
+}
+
+.hey-box { 
+  margin: auto 0px;
+}
+
+.hey-box > img {
+  height: 20px;
+}
+
+hr {
+ height: 1px; 
+}
+
+.content{ 
+  border-right: 1px solid whitesmoke;
+  padding-right: 23px;
+}
 
 
 

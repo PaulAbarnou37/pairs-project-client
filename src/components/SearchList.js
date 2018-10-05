@@ -2,7 +2,6 @@ import React from "react";
 import api from '../api';
 // import Moment from 'react-moment';
 import Moment from 'moment';
-import { Link } from "react-router-dom";
 import ResultPage from './ResultPage';
 
  
@@ -38,6 +37,7 @@ ratioSearchArray (){
   const { params } = this.props.match;
 
     newSearchArray.map(oneSearch => {
+      
     oneSearch.dateRangeRatio = Number(((((new Date(oneSearch.dateRangeMatch.dateRangeIntersection.end).getTime() - new Date(oneSearch.dateRangeMatch.dateRangeIntersection.start).getTime()) /1000/60/60/24)/ oneSearch.dateRangeMatch.myStartToEndDate) * 100).toFixed(0));
     oneSearch.totalMatchRatio = ((oneSearch.dateRangeRatio + Number(oneSearch.priceMatch) + Number(oneSearch.scoreSelectedDays)*2)/4).toFixed(0);
   })
@@ -80,19 +80,25 @@ sortSearchArray (){
       {searchArray.map((oneSearch, index) => 
       <li key= {index}> 
   
-  <div class="box box-resultslist">
-  <article class="media">
-    <div class="media-left">
-      <figure class="image is-64x64">
+  <div className="box box-resultslist">
+  <article className="media">
+  <div className="block-content">
+    <div className="media-left">
+      <figure className="image is-64x64">
         <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"/>
       </figure>
     </div>
-    <div class="media-content">
-      <div class="content">
-        <p>
+    <div className="media-content">
+      <div className="content">
+        <div className="fb-icons">
+          <div>
           <strong>{oneSearch.searchObject.owner.firstName} {oneSearch.searchObject.owner.lastName}</strong> <small> <p><span>Posted on </span>        
         {Moment(oneSearch.searchObject.createdAt).format('DD-MM-YYYY')}
       </p></small>
+      </div>
+
+      <div className="hey-box"><img src="/images/linkedin.svg" alt=""/> <img src="/images/facebook.svg" alt=""/></div>
+        </div>
          
           <br/>
           <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -101,17 +107,34 @@ sortSearchArray (){
           <span> to </span> 
           {Moment(oneSearch.searchObject.endDate).format('DD MMM YYYY')}
           <p>Date Range in common: {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.start).format('DD MMM YYYY')} - {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.end).format('DD MMM YYYY')}</p>
+          <hr/>
           <div className="match-results">
+          <div className="ratio-result-box">
+          <div>
+            <img src="/images/daterange.png" alt=""/>
+            </div>
           <p><span className="search-bold-text">Date Range:</span><br/><span className="pourcentage-match">{oneSearch.dateRangeRatio}%</span> </p> 
+          </div>
+          <div className="ratio-result-box">
+          <div>
+          <img src="/images/coin.svg" alt=""/></div>
           <p><span className="search-bold-text">Max Price:</span><br/><span className="pourcentage-match">{(oneSearch.priceMatch).toFixed(0)}%</span></p>
+          </div>
+          <div className="ratio-result-box">
+          <div>
+          <img src="/images/calendar.svg" alt=""/></div>
           <p><span className="search-bold-text">Days Selected:</span><br/><span className="pourcentage-match">{(oneSearch.scoreSelectedDays).toFixed(0)}%</span></p>
+          
+          </div >
+
           <p className="search-total-text"><span className="search-bold-text">Total:</span><br/><span className="pourcentage-match total">{oneSearch.totalMatchRatio}%</span></p>
           </div>
 
           
 
-        </p>
+        
       </div>
+    </div>
     </div>
           <ResultPage oneSearch={oneSearch}/>
   </article>

@@ -54,7 +54,7 @@ class MySearches extends React.Component {
       <div className="all-boxes">
       {mySearchesArray.map((oneSearch, index) =>
       // <Link to={`/search/${oneSearch._id}`}><p> Hey </p></Link>
-        <div className="box box-mysearch">
+        <div key={index} className="box box-mysearch">
         
         <div className="div-img-delete"><img key={index} onClick={ () => this.removeBox(oneSearch._id)} className="icon-box-mysearch" src="./images/delete-button.svg" alt=""/></div>
           <h3>{oneSearch.city}</h3>
