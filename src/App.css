@@ -138,9 +138,6 @@ input {
   color:#528add;
 }
 
-.box:hover {
-  box-shadow: 0px 0px 5px 4px #e2dfdf;
-}
 
 .search-bold-text{
   font-size: 15px;
@@ -203,7 +200,6 @@ input {
   width: 346px;
   height: auto; 
   margin: 30px;
-  cursor: pointer;
 }
 
 .all-boxes { 
@@ -436,6 +432,21 @@ hr {
 
 .link-mysearches:hover {
   text-decoration: none;
+  background-color: #528add;
+  color: white;
+  cursor: pointer;
+}
+
+.link-mysearches {
+  border: 1px solid #528add;
+  border-radius: 50px;
+  background-color: white;
+  color: #528add;
+  margin-top: 20px;
+  width: 50%;
+  font-size: 16px;
+  padding: 4px;
+  font-family: lato;
 }
 
 .equal-img {

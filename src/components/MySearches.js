@@ -53,7 +53,7 @@ class MySearches extends React.Component {
         <hr/>
       <div className="all-boxes">
       {mySearchesArray.map((oneSearch, index) =>
-      <Link className="link-mysearches" to={`/search/${oneSearch._id}`}>
+      
         <div key={index} className="box box-mysearch">
         
         <div className="div-img-delete"><img key={index} onClick={ () => this.removeBox(oneSearch._id)} className="icon-box-mysearch" src="./images/delete-button.svg" alt=""/></div>
@@ -71,8 +71,10 @@ class MySearches extends React.Component {
               <li>Max Total Ratio: { (oneSearch.results.length) ? Math.max.apply(null, oneSearch.results) : "-"}</li>
             </div>
           </div>
-        </div>
+          <Link  to={`/search/${oneSearch._id}`}><button className="link-mysearches"> See details </button>
         </Link>
+        </div>
+        
         
         )}
         </div>
