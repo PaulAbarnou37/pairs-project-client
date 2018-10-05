@@ -199,19 +199,19 @@ selectWeekDay (dayOfWeek){
         <div className='row'>
         <div className="left-search-form">
             <label className="input-form">
-            <p className="text-form"><img src="./images/one.svg"></img> City:</p>
+            <p className="text-form"><img src="/images/one.svg"></img> City:</p>
             <input value={city} type="text" placeholder=" 🏢 e.g. Paris"
                 onChange={event => this.updateCity(event)} />
             </label>
             <label className="input-form">
-            <p className="text-form"><img src="./images/two.svg"></img> Your max. monthly rent in $:</p>
+            <p className="text-form"><img src="/images/two.svg"></img> Your max. monthly rent in $:</p>
               <input  value={maxPrice} type="number" placeholder=" 💵 500$"
                   onChange={event => this.updateMaxPrice(event)} />
             </label>
         
         
           <div className="two-range">
-            <p className="text-form"><img src="./images/three.svg"></img> Your date range:</p>
+            <p className="text-form"><img src="/images/three.svg"></img> Your date range:</p>
             <div className="two-date-inside">
         <DayPickerInput className="range-picker"
           value={startDate}
@@ -250,7 +250,7 @@ selectWeekDay (dayOfWeek){
             </div>
           </div>
           <label className="input-form">
-            <p className="text-form"><img src="./images/four.svg"></img> Do you have an apartment available?</p>
+            <p className="text-form"><img src="/images/four.svg"></img> Do you have an apartment available?</p>
             
             <div className="buttons has-addons">
             <span  className={this.state.activeYes ? "button is-success is-selected": "button"} 

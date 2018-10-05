@@ -490,6 +490,10 @@ hr {
   font-weight: 800;
 }
 
+.content > p {
+  max-width: 545px;
+}
+
 
 
 

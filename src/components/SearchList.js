@@ -85,7 +85,8 @@ sortSearchArray (){
   <div className="block-content">
     <div className="media-left">
       <figure className="image is-64x64">
-        <img className="is-rounded" src={oneSearch.searchObject.owner.avatar} alt="Image"/>
+        <img className="is-rounded" src={oneSearch.searchObject.owner.avatar}
+ alt="Image"/>
       </figure>
     </div>
     <div className="media-content">
