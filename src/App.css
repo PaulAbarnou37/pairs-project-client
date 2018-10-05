@@ -140,7 +140,6 @@ input {
 
 .box:hover {
   box-shadow: 0px 0px 5px 4px #e2dfdf;
-  cursor: pointer;
 }
 
 .search-bold-text{
@@ -162,7 +161,7 @@ input {
   width: 300px;
   margin: 0px auto;
   margin-top : 10px;
-  margin-bottom: 70px;
+  margin-bottom: 40px;
 }
 
 /* .button-search-list {
@@ -204,7 +203,7 @@ input {
   width: 346px;
   height: auto; 
   margin: 30px;
-
+  cursor: pointer;
 }
 
 .all-boxes { 
@@ -422,9 +421,63 @@ hr {
   padding-right: 23px;
 }
 
+.button.is-success {
+  background-color: #72ae8b;
+}
+
+.button.is-success:hover {
+  background-color: #72ae8b;
+}
+
+.buttons.has-addons {
+  display: flex;
+  justify-content: center;
+}
+
+.link-mysearches:hover {
+  text-decoration: none;
+}
+
+.equal-img {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.equal-img > img {
+  height: 20px;
+}
+
+.total-block {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hey-box > img {
+  cursor: pointer;
+}
+
+.range-date-whole {
+  display: flex;
+}
+
+.range-date {
+  margin-left: 32px;
+}
+
+.range-date-whole.range-date-text p {
+  margin-bottom: 0px;
+}
 
 
+.content p:not(:last-child) {
+  margin-bottom: 10px;
+}
 
+.range-date-text > p {
+  font-weight: 800;
+}
 
 
 

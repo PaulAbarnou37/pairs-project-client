@@ -74,7 +74,7 @@ sortSearchArray (){
 
       <h1>Your search results for</h1>
 
-      <p>City: Paris - Maximum Monthly Rent: 500$ - From 01/01/2018 until 01/01/2018</p>
+      <p>City: Paris - Maximum Monthly Rent: 500$ - From 01/10/2018 until 01/03/2018</p>
         
       <ul className="search-element">
       {searchArray.map((oneSearch, index) => 
@@ -85,7 +85,7 @@ sortSearchArray (){
   <div className="block-content">
     <div className="media-left">
       <figure className="image is-64x64">
-        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"/>
+        <img className="is-rounded" src={oneSearch.searchObject.owner.avatar} alt="Image"/>
       </figure>
     </div>
     <div className="media-content">
@@ -101,12 +101,19 @@ sortSearchArray (){
         </div>
          
           <br/>
-          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-          <span>{oneSearch.searchObject.owner.firstName} will be in Paris from </span>
-          {Moment(oneSearch.searchObject.startDate).format('DD MMM YYYY')}      
-          <span> to </span> 
-          {Moment(oneSearch.searchObject.endDate).format('DD MMM YYYY')}
-          <p>Date Range in common: {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.start).format('DD MMM YYYY')} - {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.end).format('DD MMM YYYY')}</p>
+          <p>{oneSearch.searchObject.owner.description}</p>
+          <div className="range-date-whole">
+          <div className="range-date-text">
+            <p>{oneSearch.searchObject.owner.firstName} will be in Paris from</p>
+            <p>Date range in common</p>
+          </div>
+          <div className="range-date">
+            <p>:  {Moment(oneSearch.searchObject.startDate).format('DD MMM YYYY')}      
+           <span> - </span>  
+          {Moment(oneSearch.searchObject.endDate).format('DD MMM YYYY')}</p>
+          <p>:  {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.start).format('DD MMM YYYY')} - {Moment(oneSearch.dateRangeMatch.dateRangeIntersection.end).format('DD MMM YYYY')}</p>
+          </div>
+          </div>
           <hr/>
           <div className="match-results">
           <div className="ratio-result-box">
@@ -124,10 +131,13 @@ sortSearchArray (){
           <div>
           <img src="/images/calendar.svg" alt=""/></div>
           <p><span className="search-bold-text">Days Selected:</span><br/><span className="pourcentage-match">{(oneSearch.scoreSelectedDays).toFixed(0)}%</span></p>
-          
           </div >
-
+          <div className="equal-img">
+            <img src="/images/equal-math.svg" alt=""/>
+          </div>
+          <div className="total-block">
           <p className="search-total-text"><span className="search-bold-text">Total:</span><br/><span className="pourcentage-match total">{oneSearch.totalMatchRatio}%</span></p>
+          </div>
           </div>
 
           

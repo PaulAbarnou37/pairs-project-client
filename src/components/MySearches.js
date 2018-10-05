@@ -53,7 +53,7 @@ class MySearches extends React.Component {
         <hr/>
       <div className="all-boxes">
       {mySearchesArray.map((oneSearch, index) =>
-      // <Link to={`/search/${oneSearch._id}`}><p> Hey </p></Link>
+      <Link className="link-mysearches" to={`/search/${oneSearch._id}`}>
         <div key={index} className="box box-mysearch">
         
         <div className="div-img-delete"><img key={index} onClick={ () => this.removeBox(oneSearch._id)} className="icon-box-mysearch" src="./images/delete-button.svg" alt=""/></div>
@@ -72,6 +72,7 @@ class MySearches extends React.Component {
             </div>
           </div>
         </div>
+        </Link>
         
         )}
         </div>

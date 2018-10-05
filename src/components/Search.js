@@ -29,9 +29,24 @@ class Search extends React.Component {
       everyWeekDay: [],
       from: undefined,
       to: undefined,
+      activeYes: false,
+      activeNo: false,
      };
      this.handleDayClick = this.handleDayClick.bind(this);  
   }
+
+  toggleClassYes(event) {
+    event.preventDefault();
+    const currentState = this.state.activeYes;
+    this.setState({ activeYes: !currentState, activeNo: currentState });
+};
+
+  toggleClassNo(event) {
+    event.preventDefault();
+    const currentState = this.state.activeNo;
+    this.setState({ activeYes: currentState, activeNo: !currentState });
+  };
+
 
   showFromMonth() {
     const { startDate, endDate } = this.state;
@@ -177,7 +192,7 @@ selectWeekDay (dayOfWeek){
       <section className="search-form">
       <h1>Start your search</h1>
 
-      <h3>Fill the form below to get a full overview bla bla blah voila</h3>
+      <h3>Fill the form below to find the perfect match with your needs</h3>
       
       <div className="box">
         <form onSubmit={event => this.handleSubmit(event)}>
@@ -235,10 +250,14 @@ selectWeekDay (dayOfWeek){
             </div>
           </div>
           <label className="input-form">
-            <p className="text-form"><img src="./images/four.svg"></img> Do you have a apartment available?</p>
+            <p className="text-form"><img src="./images/four.svg"></img> Do you have an apartment available?</p>
             
-              <input  value={maxPrice} type="number" placeholder=" 💵 500$"
-                  onChange={event => this.updateMaxPrice(event)} />
+            <div className="buttons has-addons">
+            <span  className={this.state.activeYes ? "button is-success is-selected": "button"} 
+                          onClick={(event) => this.toggleClassYes(event)} >Yes</span>
+            <span className={this.state.activeNo ? "button is-danger is-selected": "button"}
+              onClick={(event) => this.toggleClassNo(event)}>No</span>
+            </div>
             </label>
 
           </div>
